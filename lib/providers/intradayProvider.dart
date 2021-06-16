@@ -46,7 +46,6 @@ class IntradayProvider extends ChangeNotifier {
 
   void selectMarket({required Market market}) {
     _selectedMarket = market;
-    calcMinSell();
     notifyListeners();
   }
 
@@ -56,6 +55,7 @@ class IntradayProvider extends ChangeNotifier {
     } else {
       _buyPrice = double.parse(price);
     }
+    calcMinSell();
     notifyListeners();
   }
 
@@ -74,7 +74,7 @@ class IntradayProvider extends ChangeNotifier {
     } else {
       _quantity = int.parse(quantity);
     }
-
+    calcMinSell();
     notifyListeners();
   }
 
@@ -89,7 +89,7 @@ class IntradayProvider extends ChangeNotifier {
     }
     double minSellPriceInc = 0;
     if (_selectedMarket == Market.NSE) {
-      minSellPriceInc = 0.05;
+      minSellPriceInc = 0.01;
     } else {
       minSellPriceInc = 0.01;
     }
